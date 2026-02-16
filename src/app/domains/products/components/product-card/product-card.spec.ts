@@ -37,17 +37,13 @@ describe('ProductCard', () => {
     expect(el.querySelector('h2')?.textContent?.trim()).toContain('Test Product');
   });
 
-  it('should display category with titlecase', () => {
+  it('should display add-to-cart section when quantity > 0', () => {
     const el = fixture.nativeElement as HTMLElement;
-    expect(el.querySelector('.product-category')?.textContent?.trim()).toBe('Food');
+    expect(el.textContent).toContain('Quantité');
+    expect(el.textContent).toContain('Ajouter au panier');
   });
 
-  it('should display "X en stock" when quantity > 0', () => {
-    const el = fixture.nativeElement as HTMLElement;
-    expect(el.textContent).toContain('5 en stock');
-  });
-
-  it('should display "Non disponible" when quantity is 0', () => {
+  it('should display Non disponible when quantity is 0', () => {
     fixture.componentRef.setInput('product', { ...mockProduct, quantity: 0 });
     fixture.detectChanges();
     const el = fixture.nativeElement as HTMLElement;

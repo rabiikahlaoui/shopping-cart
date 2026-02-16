@@ -1,4 +1,4 @@
-import { Product } from '../model/product.model';
+import { TaxProduct } from '../models/tax-product.model';
 
 const ESSENTIAL_CATEGORIES = ['food', 'medecine'];
 const BOOKS_CATEGORY = 'books';
@@ -14,7 +14,7 @@ export function getBaseTaxRatePercent(category: string): number {
   return 20;
 }
 
-export function getPriceTtc(product: Product): number {
+export function getPriceTtc(product: TaxProduct): number {
   const pht = product.price;
   const baseTax = getBaseTaxRatePercent(product.category);
   const importTax = product.isImported ? 5 : 0;

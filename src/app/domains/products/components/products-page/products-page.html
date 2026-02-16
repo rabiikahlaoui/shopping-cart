@@ -1,15 +1,21 @@
 <app-subheader title="Produits"></app-subheader>
 
 <div class="container">
-  <app-products-filter
-    [categories]="categories()"
-    [selectedCategory]="selectedCategory()"
-    (categoryChange)="setCategory($event)"
-  />
+  @if (loading()) {
+    <div class="products-loading">
+      <app-spinner />
+    </div>
+  } @else {
+    <app-products-filter
+      [categories]="categories()"
+      [selectedCategory]="selectedCategory()"
+      (categoryChange)="setCategory($event)"
+    />
 
-  <div class="products-list">
-    @for (product of filteredProducts(); track product.id) {
-      <app-product-card [product]="product"></app-product-card>
-    }
-  </div>
+    <div class="products-list">
+      @for (product of filteredProducts(); track product.id) {
+        <app-product-card [product]="product"></app-product-card>
+      }
+    </div>
+  }
 </div>

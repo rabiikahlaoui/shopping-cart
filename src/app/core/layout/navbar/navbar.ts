@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CartStore } from '../../../domains/cart/store/cart.store';
 
 @Component({
   selector: 'app-navbar',
@@ -8,5 +9,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-
+  protected cartStore = inject(CartStore);
 }

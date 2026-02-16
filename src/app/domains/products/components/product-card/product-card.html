@@ -2,9 +2,9 @@
   <h2>
     @let name = product().productName.trim();
     @if (name) {
-    {{ name }}
+        {{ name }}
     } @else {
-    <span class="product-name-placeholder">Sans nom</span>
+        <span class="product-name-placeholder">Sans nom</span>
     }
   </h2>
 
@@ -18,11 +18,25 @@
     </p>
   </div>
 
-  <p>
-    @if (product().quantity > 0) {
-      {{ product().quantity }} en stock
+  @if (product().quantity > 0) {
+    @if (availableQuantity() > 0) {
+    <div class="add-to-cart flex align-center">
+        <label [for]="'quantity-' + product().id">Quantité</label>
+        <select [id]="'quantity-' + product().id" [value]="effectiveQuantityToAdd()" (change)="setQuantity($event)">
+        @for (quantity of quantityOptions; track quantity) {
+        <option [value]="quantity">
+            {{ quantity }}
+        </option>
+        }
+        </select>
+        <button type="button" class="btn btn-primary" (click)="addToCart()">
+        Ajouter au panier
+        </button>
+    </div>
     } @else {
-      Non disponible
+        <p class="all-in-cart">Tout est dans le panier</p>
     }
-  </p>
+  } @else {
+    <p>Non disponible</p>
+  }
 </article>

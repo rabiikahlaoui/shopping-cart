@@ -9,6 +9,9 @@
           <a class="btn btn-secondary" routerLink="/cart" routerLinkActive="btn-primary">
             <i class="bi bi-bag"></i>
             Panier
+            @if (cartStore.cartItemsCount() > 0) {
+              <span class="btn-badge btn-badge-primary">{{ cartStore.cartItemsCount() }}</span>
+            }
           </a>
         </li>
       </ul>

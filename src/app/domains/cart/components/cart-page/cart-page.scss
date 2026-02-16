@@ -1,0 +1,40 @@
+@use 'variables' as *;
+
+.cart-empty {
+    margin: 2rem 0 1rem 0;
+    color: $color-muted;
+    font-size: 1.125rem;
+}
+
+.cart-container {
+    margin: 2rem 0 1rem 0;
+    gap: 3rem;
+
+    .cart-totals {
+        flex: 0 0 15rem;
+        padding: 1rem;
+        border: 1px solid $color-border;
+        border-radius: 0.5rem;
+        background-color: $color-secondary;
+        height: fit-content;
+        font-size: 1rem;
+
+        .cart-total-ttc {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: $color-primary;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .cart-container {
+        flex-direction: column;
+        gap: 2rem;
+
+        .cart-totals {
+            flex: 1;
+        }
+    }
+}

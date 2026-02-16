@@ -3,6 +3,7 @@ import { Product } from '../../model/product.model';
 import { ProductsService } from '../../services/products.service';
 import { take } from 'rxjs';
 import { Subheader } from '../../../../shared/components/subheader/subheader';
+import { Spinner } from '../../../../shared/components/spinner/spinner';
 import { ProductCard } from '../product-card/product-card';
 import { ProductsFilter } from '../products-filter/products-filter';
 
@@ -10,6 +11,7 @@ import { ProductsFilter } from '../products-filter/products-filter';
   selector: 'app-products-page',
   imports: [
     Subheader,
+    Spinner,
     ProductCard,
     ProductsFilter,
   ],
@@ -18,6 +20,7 @@ import { ProductsFilter } from '../products-filter/products-filter';
 })
 export class ProductsPage implements OnInit {
   products = signal<Product[]>([]);
+  loading = signal(true);
   selectedCategory = signal<string>('');
 
   categories = computed(() => {
@@ -40,6 +43,7 @@ export class ProductsPage implements OnInit {
       .pipe(take(1))
       .subscribe((products) => {
         this.products.set(products);
+        this.loading.set(false);
       });
   }
 

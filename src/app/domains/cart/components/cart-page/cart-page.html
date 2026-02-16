@@ -1,1 +1,59 @@
-<p>cart-page works!</p>
+<app-subheader title="Panier"></app-subheader>
+
+<div class="container">
+  @if (cartStore.cartItems().length === 0) {
+  <p class="cart-empty">Panier vide</p>
+  } @else {
+  <div class="cart-container flex">
+    <table class="table responsive">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Quantité</th>
+          <th>Taxes (unitaire)</th>
+          <th>Prix unitaire HT</th>
+          <th>Prix unitaire TTC</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of cartItemsWithTotals(); track item.product.id) {
+        <tr>
+          <td data-label="Nom">
+            {{ item.product.productName || 'Sans nom' }}
+          </td>
+          <td data-label="Quantité">
+            {{ item.quantity }}
+          </td>
+          <td data-label="Taxes (unitaire)">
+            {{ item.unitTax | currency:'EUR':'symbol':'1.2-2' }}
+          </td>
+          <td data-label="Prix unitaire HT">
+            {{ item.unitPriceHt | currency:'EUR':'symbol':'1.2-2' }}
+          </td>
+          <td data-label="Prix unitaire TTC">
+            {{ item.unitPriceTtc | currency:'EUR':'symbol':'1.2-2' }}
+          </td>
+          <td class="actions" data-label="Actions">
+            <button type="button" class="btn btn-outline-danger btn-delete" (click)="cartStore.removeItem(item.product.id)">
+              <i class="bi bi-x-lg"></i>
+              Supprimer
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    <div class="cart-totals">
+      <p class="cart-total-line">
+        Total taxes :
+        {{ cartStore.cartTotalTaxes() | currency:'EUR':'symbol':'1.2-2' }}
+      </p>
+      <p class="cart-total-line cart-total-ttc">
+        Total TTC :
+        {{ cartStore.cartTotal() | currency:'EUR':'symbol':'1.2-2' }}
+      </p>
+    </div>
+  </div>
+  }
+</div>
