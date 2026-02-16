@@ -1,0 +1,15 @@
+@use 'variables' as *;
+
+.subheader {
+    background-image: url('/images/background-green.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 2.5rem 0;
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        color: $color-white;
+    }
+}

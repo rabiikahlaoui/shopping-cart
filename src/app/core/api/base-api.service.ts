@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export abstract class BaseApi {
+export abstract class BaseApiService {
   protected readonly baseUrl = environment.apiBaseUrl;
 
   /** API path for the service. Must start with '/'. */

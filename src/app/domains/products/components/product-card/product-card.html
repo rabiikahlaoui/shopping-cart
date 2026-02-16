@@ -1,0 +1,28 @@
+<article class="product-item flex flex-col" [class.out-of-stock]="product().quantity <= 0">
+  <h2>
+    @let name = product().productName.trim();
+    @if (name) {
+    {{ name }}
+    } @else {
+    <span class="product-name-placeholder">Sans nom</span>
+    }
+  </h2>
+
+  <div class="product-info flex align-center">
+    <p class="product-category">
+      {{ product().category | titlecase }}
+    </p>
+
+    <p class="product-price ml-auto">
+      {{ product() | priceTtc | currency:'EUR':'symbol':'1.2-2' }}
+    </p>
+  </div>
+
+  <p>
+    @if (product().quantity > 0) {
+      {{ product().quantity }} en stock
+    } @else {
+      Non disponible
+    }
+  </p>
+</article>

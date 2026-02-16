@@ -1,0 +1,13 @@
+<div class="products-filter flex align-center">
+  <label for="category-filter">Catégorie</label>
+  <select
+    id="category-filter"
+    [value]="selectedCategory()"
+    (change)="setCategory($event)"
+  >
+    <option value="">Toutes</option>
+    @for (category of categories(); track category) {
+      <option [value]="category">{{ category }}</option>
+    }
+  </select>
+</div>
