@@ -7,8 +7,29 @@ import {
   withState,
 } from '@ngrx/signals';
 import { CartItem } from '../model/cart-item.model';
-import { Product } from '../../products/model/product.model';
 import { getPriceTtc } from '../../../shared/utils/tax.utils';
+import { Product } from '../../products/model/product.model';
+
+const CART_STORAGE_KEY = 'shopping-cart-cart';
+
+function loadCartFromStorage(): CartItem[] {
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as CartItem[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCartToStorage(items: CartItem[]): void {
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+  } catch {
+    // Ignore
+  }
+}
 
 function lineTtc(item: CartItem): number {
   return getPriceTtc(item.product) * item.quantity;
@@ -20,7 +41,7 @@ function lineTax(item: CartItem): number {
 
 export const CartStore = signalStore(
   { providedIn: 'root' },
-  withState({ cartItems: [] as CartItem[] }),
+  withState({ cartItems: loadCartFromStorage() }),
   withComputed((store) => ({
     cartItemsCount: computed(() =>
       store.cartItems().reduce((sum, item) => sum + item.quantity, 0)
@@ -46,11 +67,12 @@ export const CartStore = signalStore(
             )
           : [...current, { product, quantity }];
       patchState(store, { cartItems: next });
+      saveCartToStorage(next);
     },
     removeItem(productId: number): void {
-      patchState(store, {
-        cartItems: store.cartItems().filter((i) => i.product.id !== productId),
-      });
+      const next = store.cartItems().filter((i) => i.product.id !== productId);
+      patchState(store, { cartItems: next });
+      saveCartToStorage(next);
     },
   }))
 );

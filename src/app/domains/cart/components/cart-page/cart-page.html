@@ -1,19 +1,19 @@
 <app-subheader title="Panier"></app-subheader>
 
-<div class="container">
+<main class="container" role="main" tabindex="-1">
   @if (cartStore.cartItems().length === 0) {
   <p class="cart-empty">Panier vide</p>
   } @else {
   <div class="cart-container flex">
-    <table class="table responsive">
+    <table class="table responsive" role="table" aria-label="Contenu du panier">
       <thead>
         <tr>
-          <th>Nom</th>
-          <th>Quantité</th>
-          <th>Taxes (unitaire)</th>
-          <th>Prix unitaire HT</th>
-          <th>Prix unitaire TTC</th>
-          <th>Actions</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Taxes (unitaire)</th>
+          <th scope="col">Prix unitaire HT</th>
+          <th scope="col">Prix unitaire TTC</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -35,8 +35,13 @@
             {{ item.unitPriceTtc | currency:'EUR':'symbol':'1.2-2' }}
           </td>
           <td class="actions" data-label="Actions">
-            <button type="button" class="btn btn-outline-danger btn-delete" (click)="cartStore.removeItem(item.product.id)">
-              <i class="bi bi-x-lg"></i>
+            <button
+              type="button"
+              class="btn btn-outline-danger btn-delete"
+              [attr.aria-label]="'Supprimer ' + (item.product.productName || 'cet article') + ' du panier'"
+              (click)="cartStore.removeItem(item.product.id)"
+            >
+              <i class="bi bi-x-lg" aria-hidden="true"></i>
               Supprimer
             </button>
           </td>
@@ -56,4 +61,4 @@
     </div>
   </div>
   }
-</div>
+</main>

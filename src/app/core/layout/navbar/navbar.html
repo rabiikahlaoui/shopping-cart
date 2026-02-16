@@ -2,12 +2,27 @@
   <div class="container flex align-center">
     <h1 class="logo">Shop</h1>
 
-    <nav class="navbar flex flex-fill" role="navigation">
+    <nav class="navbar flex flex-fill" role="navigation" aria-label="Navigation principale">
       <ul class="navbar-menu flex align-center flex-fill">
-        <li><a class="nav-link" routerLink="/products" routerLinkActive="active">Accueil</a></li>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="/products"
+            routerLinkActive="active"
+            #productsLink="routerLinkActive"
+            [attr.aria-current]="productsLink.isActive ? 'page' : null"
+          >Accueil</a>
+        </li>
         <li class="ml-auto">
-          <a class="btn btn-secondary" routerLink="/cart" routerLinkActive="btn-primary">
-            <i class="bi bi-bag"></i>
+          <a
+            class="btn btn-secondary"
+            routerLink="/cart"
+            routerLinkActive="btn-primary"
+            #cartLink="routerLinkActive"
+            [attr.aria-current]="cartLink.isActive ? 'page' : null"
+            [attr.aria-label]="cartStore.cartItemsCount() > 0 ? 'Panier, ' + cartStore.cartItemsCount() + ' article(s)' : 'Panier'"
+          >
+            <i class="bi bi-bag" aria-hidden="true"></i>
             Panier
             @if (cartStore.cartItemsCount() > 0) {
               <span class="btn-badge btn-badge-primary">{{ cartStore.cartItemsCount() }}</span>
