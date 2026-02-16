@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'variables' as *;
+
+// Layout
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: $font-size-base;
+}
+
+body {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    color: $color-body;
+}
+
+.main {
+    padding-top: 4rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+// Elements
+
+.btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+
+    &.btn-secondary {
+        color: $color-body;
+        background-color: $color-secondary;
+
+        &:hover {
+            background-color: $color-secondary-dark;
+        }
+    }
+
+    &.btn-primary {
+        color: $color-white;
+        background-color: $color-primary;
+
+        &:hover {
+            background-color: $color-primary-dark;
+        }
+    }
+}
+
+// Utility classes
+
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.flex-fill {
+    flex: 1;
+}
+
+.ml-auto {
+    margin-left: auto;
+}

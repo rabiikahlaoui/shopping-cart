@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+.banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-white;
+    z-index: 1000;
+    box-shadow: 0px 4px 4px rgba(21, 14, 66, 0.17);
+    height: 4rem;
+
+    .logo {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $color-primary;
+    }
+
+    .navbar {
+        margin-left: 2rem;
+
+        .nav-link {
+            text-decoration: none;
+            color: $color-body;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-bottom: 2px solid transparent;
+
+            &.active {
+                color: $color-primary;
+                border-bottom-color: $color-primary;
+            }
+        }
+    }
+
+    .navbar-menu {
+        list-style: none;
+    }
+}
