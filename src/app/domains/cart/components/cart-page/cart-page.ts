@@ -1,9 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import { Subheader } from '../../../../shared/components/subheader/subheader';
+import { Subheader } from '@shared/components/subheader/subheader';
+import { getPriceTtc } from '@shared/utils/tax.utils';
 import { CartStore } from '../../store/cart.store';
 import { CartItemWithTotals } from '../../model/cart-item.model';
-import { getPriceTtc } from '../../../../shared/utils/tax.utils';
 
 @Component({
   selector: 'app-cart-page',

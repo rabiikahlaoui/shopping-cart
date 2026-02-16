@@ -1,9 +1,9 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { take } from 'rxjs';
+import { Subheader } from '@shared/components/subheader/subheader';
+import { Spinner } from '@shared/components/spinner/spinner';
 import { Product } from '../../model/product.model';
 import { ProductsService } from '../../services/products.service';
-import { take } from 'rxjs';
-import { Subheader } from '../../../../shared/components/subheader/subheader';
-import { Spinner } from '../../../../shared/components/spinner/spinner';
 import { ProductCard } from '../product-card/product-card';
 import { ProductsFilter } from '../products-filter/products-filter';
 

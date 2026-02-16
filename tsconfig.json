@@ -3,6 +3,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@shared/*": ["src/app/shared/*"]
+    },
     "esModuleInterop": true,
     "strict": true,
     "noImplicitOverride": true,

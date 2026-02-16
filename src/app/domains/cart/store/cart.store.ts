@@ -6,8 +6,8 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
+import { getPriceTtc } from '@shared/utils/tax.utils';
 import { CartItem } from '../model/cart-item.model';
-import { getPriceTtc } from '../../../shared/utils/tax.utils';
 import { Product } from '../../products/model/product.model';
 
 const CART_STORAGE_KEY = 'shopping-cart-cart';
