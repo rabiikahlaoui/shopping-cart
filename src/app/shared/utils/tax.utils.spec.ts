@@ -3,7 +3,7 @@ import {
   roundUpToFiveCents,
   getBaseTaxRatePercent,
 } from './tax.utils';
-import { TaxProduct } from '../models/tax-product.model';
+import { TaxProduct } from '@shared/models/tax-product.model';
 
 function product(overrides: Partial<TaxProduct> = {}): TaxProduct {
   return {

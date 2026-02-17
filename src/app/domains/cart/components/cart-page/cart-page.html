@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of cartItemsWithTotals(); track item.product.id) {
+        @for (item of cartItemsPricing(); track item.product.id) {
         <tr>
           <td data-label="Nom">
             {{ item.product.productName || 'Sans nom' }}

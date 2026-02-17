@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpInterceptorFn, HttpRequest, HttpResponse, HttpHandlerFn } from '@angular/common/http';
 import { of } from 'rxjs';
 
-import { mockApiInterceptor } from './mock-api-interceptor';
+import { mockApiInterceptor } from './mock-api.interceptor';
 
 describe('mockApiInterceptor', () => {
   const interceptor: HttpInterceptorFn = (req, next) =>

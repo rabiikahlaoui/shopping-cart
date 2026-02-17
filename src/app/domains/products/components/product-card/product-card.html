@@ -1,21 +1,27 @@
 <article class="product-item flex flex-col" [class.out-of-stock]="product().quantity <= 0">
-  <h2>
-    @let name = product().productName.trim();
-    @if (name) {
-        {{ name }}
-    } @else {
-        <span class="product-name-placeholder">Sans nom</span>
-    }
-  </h2>
-
-  <div class="product-info flex align-center">
-    <p class="product-category">
-      {{ product().category | titlecase }}
-    </p>
-
-    <p class="product-price ml-auto">
-      {{ priceTtc() | currency:'EUR':'symbol':'1.2-2' }}
-    </p>
+  <div class="product-details flex align-start">
+    <div class="product-category-icon">
+        <i [class]="categoryIconClass()" aria-hidden="true"></i>
+    </div>
+    
+    <div class="product-info-container flex-fill">
+      <h2 class="product-name">
+        @let name = product().productName.trim();
+        @if (name) {
+            {{ name }}
+        } @else {
+            <span class="product-name-placeholder">Sans nom</span>
+        }
+      </h2>
+      <div class="product-info flex align-center">
+        <p class="product-category">
+          {{ product().category | titlecase }}
+        </p>
+        <p class="product-price ml-auto">
+          {{ priceTtc() | currency:'EUR':'symbol':'1.2-2' }}
+        </p>
+      </div>
+    </div>
   </div>
 
   @if (product().quantity > 0) {
@@ -40,9 +46,9 @@
         </button>
     </div>
     } @else {
-        <p class="all-in-cart">Tout est dans le panier</p>
+        <p class="product-stock-message">Tout est dans le panier</p>
     }
   } @else {
-    <p>Non disponible</p>
+    <p class="product-stock-message">Non disponible</p>
   }
 </article>

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { ProductsPage } from './products-page';
-import { ProductsService } from '../../services/products.service';
-import { Product } from '../../model/product.model';
+import { ProductsService } from '@domains/products/services/products.service';
+import { Product } from '@shared/models/product.model';
 
 const mockProducts: Product[] = [
   { id: 1, productName: 'A', price: 10, quantity: 0, isImported: false, category: 'Food' },

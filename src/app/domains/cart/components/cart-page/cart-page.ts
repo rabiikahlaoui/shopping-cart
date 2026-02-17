@@ -3,7 +3,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Subheader } from '@shared/components/subheader/subheader';
 import { getPriceTtc } from '@shared/utils/tax.utils';
 import { CartStore } from '@core/store/cart.store';
-import { CartItemWithTotals } from '../../model/cart-item.model';
+import { CartItemPricing } from '@shared/models/cart-item.model';
 
 @Component({
   selector: 'app-cart-page',
@@ -14,11 +14,14 @@ import { CartItemWithTotals } from '../../model/cart-item.model';
 export class CartPage {
   protected cartStore = inject(CartStore);
 
-  protected cartItemsWithTotals = computed<CartItemWithTotals[]>(() =>
-    this.cartStore.cartItems().map((item): CartItemWithTotals => {
-      const unitPriceTtc = getPriceTtc(item.product);
-      const unitPriceHt = item.product.price;
-      const unitTax = unitPriceTtc - unitPriceHt;
+  protected cartItemsPricing = computed<CartItemPricing[]>(() =>
+    this.cartStore.cartItems().map((item): CartItemPricing => {
+      const unitTtc = getPriceTtc(item.product);
+      const unitHt = item.product.price;
+      const qty = item.quantity;
+      const unitPriceHt = unitHt * qty;
+      const unitPriceTtc = unitTtc * qty;
+      const unitTax = (unitTtc - unitHt) * qty;
 
       return {
         ...item,

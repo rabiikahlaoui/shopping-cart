@@ -1,15 +1,18 @@
-import { TaxProduct } from '../models/tax-product.model';
+import { TaxProduct } from '@shared/models/tax-product.model';
 
 const ESSENTIAL_CATEGORIES = ['food', 'medecine'];
 const BOOKS_CATEGORY = 'books';
-const ROUND_UP_FACTOR = 20;
 
 export function roundUpToFiveCents(amount: number): number {
-  return Math.ceil(amount * ROUND_UP_FACTOR) / ROUND_UP_FACTOR;
+  const roundUpCents = 5;
+  const roundUpFactor = 100 / roundUpCents;
+
+  return Math.ceil(amount * roundUpFactor) / roundUpFactor;
 }
 
 export function getBaseTaxRatePercent(category: string): number {
   const normalized = category.toLowerCase().trim();
+
   if (ESSENTIAL_CATEGORIES.includes(normalized)) return 0;
   if (normalized === BOOKS_CATEGORY) return 10;
   return 20;

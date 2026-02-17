@@ -1,9 +1,8 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
-import { mockApiInterceptor } from '@core/interceptors/mock-api-interceptor';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { mockApiInterceptor } from '@core/interceptors/mock-api.interceptor';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [

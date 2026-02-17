@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { patchState } from '@ngrx/signals';
 import { CartStore } from './cart.store';
-import { Product } from '../../domains/products/model/product.model';
+import { Product } from '@shared/models/product.model';
 
 function product(overrides: Partial<Product> = {}): Product {
   return {

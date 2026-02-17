@@ -1,8 +1,17 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
-import { Product } from '../../model/product.model';
+import { Product } from '@shared/models/product.model';
 import { getPriceTtc } from '@shared/utils/tax.utils';
 import { CartStore } from '@core/store/cart.store';
+
+const CATEGORY_ICONS: Record<string, string> = {
+  Food: 'bi bi-basket',
+  Medecine: 'bi bi-capsule',
+  Books: 'bi bi-book',
+  Electric: 'bi bi-plug',
+  Parfum: 'bi bi-droplet',
+};
+const DEFAULT_CATEGORY_ICON = 'bi bi-cart';
 
 @Component({
   selector: 'app-product-card',
@@ -17,6 +26,11 @@ export class ProductCard {
   product = input.required<Product>();
   quantityToAdd = signal(1);
   private cartStore = inject(CartStore);
+
+  readonly categoryIconClass = computed(() => {
+    const category = this.product()?.category;
+    return (category && CATEGORY_ICONS[category]) || DEFAULT_CATEGORY_ICON;
+  });
 
   priceTtc = computed(() => getPriceTtc(this.product()));
 

@@ -1,11 +1,11 @@
-import { Product } from '../../products/model/product.model';
+import { Product } from './product.model';
 
 export interface CartItem {
   product: Product;
   quantity: number;
 }
 
-export type CartItemWithTotals = CartItem & {
+export type CartItemPricing = CartItem & {
   unitPriceHt: number;
   unitPriceTtc: number;
   unitTax: number;

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { ProductsService } from './products.service';
-import { Product } from '../model/product.model';
+import { Product } from '@shared/models/product.model';
 
 describe('ProductsService', () => {
   let service: ProductsService;

@@ -3,5 +3,6 @@ module.exports = {
   moduleNameMapper: {
     '^@shared/(.*)$': '<rootDir>/src/app/shared/$1',
     '^@core/(.*)$': '<rootDir>/src/app/core/$1',
+    '^@domains/(.*)$': '<rootDir>/src/app/domains/$1',
   },
 };

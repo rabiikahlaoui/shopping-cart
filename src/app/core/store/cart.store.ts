@@ -7,8 +7,8 @@ import {
   withState,
 } from '@ngrx/signals';
 import { getPriceTtc } from '@shared/utils/tax.utils';
-import { CartItem } from '../../domains/cart/model/cart-item.model';
-import { Product } from '../../domains/products/model/product.model';
+import { CartItem } from '@shared/models/cart-item.model';
+import { Product } from '@shared/models/product.model';
 
 const CART_STORAGE_KEY = 'shopping-cart-cart';
 

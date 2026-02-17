@@ -1,7 +1,6 @@
 @use 'variables' as *;
 
 .product-item {
-    padding: 1rem;
     overflow: hidden;
     border: 1px solid $color-border;
     border-radius: 0.5rem;
@@ -17,7 +16,19 @@
         opacity: 0.6;
     }
 
-    h2 {
+    .product-details {
+        padding: 1rem;
+        gap: 1.5rem;
+
+        .product-category-icon {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: $color-secondary;
+            font-size: 1.5rem;
+        }
+    }
+
+    .product-name {
         font-size: 1.25rem;
         font-weight: 600;
         margin-bottom: auto;
@@ -47,7 +58,6 @@
     }
 
     .add-to-cart {
-        margin: auto -1rem -1rem -1rem;
         padding: 1rem;
         gap: 0.5rem;
         flex-wrap: wrap;
@@ -69,9 +79,10 @@
         }
     }
 
-    .all-in-cart {
+    .product-stock-message {
         color: $color-muted;
         font-size: 0.875rem;
         margin-top: 0.5rem;
+        padding: 1rem;
     }
 }

@@ -40,7 +40,7 @@
 }
 
 // Tablet and mobile
-@media (max-width: 1024px) {
+@media (max-width: #{$breakpoint-md}) {
     .cart-container {
         flex-direction: column;
         gap: 2rem;

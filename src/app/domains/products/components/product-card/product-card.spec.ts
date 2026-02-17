@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductCard } from './product-card';
-import { Product } from '../../model/product.model';
+import { Product } from '@shared/models/product.model';
 
 const mockProduct: Product = {
   id: 1,
