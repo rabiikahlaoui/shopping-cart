@@ -1,5 +1,5 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { take } from 'rxjs';
+import { Component, computed, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subheader } from '@shared/components/subheader/subheader';
 import { Spinner } from '@shared/components/spinner/spinner';
 import { Product } from '@shared/models/product.model';
@@ -18,7 +18,8 @@ import { ProductsFilter } from '@domains/products/components/products-filter/pro
   templateUrl: './products-page.html',
   styleUrl: './products-page.scss',
 })
-export class ProductsPage implements OnInit {
+export class ProductsPage {
+  private productsService = inject(ProductsService);
   products = signal<Product[]>([]);
   loading = signal(true);
   selectedCategory = signal<string>('');
@@ -36,11 +37,9 @@ export class ProductsPage implements OnInit {
     return [...filtered].sort((a, b) => (a.quantity > 0 ? 0 : 1) - (b.quantity > 0 ? 0 : 1));
   });
 
-  private productsService = inject(ProductsService);
-
-  ngOnInit(): void {
+  constructor() {
     this.productsService.getProducts()
-      .pipe(take(1))
+      .pipe(takeUntilDestroyed())
       .subscribe((products) => {
         this.products.set(products);
         this.loading.set(false);

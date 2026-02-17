@@ -2,9 +2,7 @@
 
 <main class="container" role="main" tabindex="-1">
   @if (loading()) {
-    <div class="products-loading">
-      <app-spinner />
-    </div>
+    <app-spinner />
   } @else {
     <app-products-filter
       [categories]="categories()"

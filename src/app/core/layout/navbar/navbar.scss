@@ -19,6 +19,10 @@
     .navbar {
         margin-left: 2rem;
 
+        .navbar-menu {
+            list-style: none;
+        }
+
         .nav-link {
             text-decoration: none;
             color: $color-body;
@@ -31,9 +35,5 @@
                 border-bottom-color: $color-primary;
             }
         }
-    }
-
-    .navbar-menu {
-        list-style: none;
     }
 }

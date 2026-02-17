@@ -1,11 +1,5 @@
 @use 'variables' as *;
 
-.cart-empty {
-    margin: 2rem 0 1rem 0;
-    color: $color-muted;
-    font-size: 1.125rem;
-}
-
 .cart-container {
     margin: 2rem 0 1rem 0;
     gap: 3rem;

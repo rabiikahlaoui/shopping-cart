@@ -30,7 +30,7 @@ describe('mockApiInterceptor', () => {
     });
   });
 
-  it('should pass through to next for non-GET request', (done) => {
+  it('should pass to next handler for non GET request', (done) => {
     const req = new HttpRequest('POST', 'https://api.example.com/api/products');
     interceptor(req, next).subscribe((event) => {
       if (event instanceof HttpResponse) {
@@ -40,7 +40,7 @@ describe('mockApiInterceptor', () => {
     });
   });
 
-  it('should pass through to next for GET request without /api/products in url', (done) => {
+  it('should pass to next handler for GET request without /api/products in url', (done) => {
     const req = new HttpRequest('GET', 'https://api.example.com/api/other');
     interceptor(req, next).subscribe((event) => {
       if (event instanceof HttpResponse) {

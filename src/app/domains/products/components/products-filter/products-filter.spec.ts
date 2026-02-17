@@ -25,11 +25,13 @@ describe('ProductsFilter', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display label and select with Toutes option', () => {
+  it('should display label and select with all categories option', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('label')?.textContent?.trim()).toBe('Catégorie');
+
     const select = compiled.querySelector('select');
     expect(select).toBeTruthy();
+
     const options = compiled.querySelectorAll('option');
     expect(options.length).toBe(categories.length + 1);
     expect(options[0].getAttribute('value')).toBe('');
@@ -39,6 +41,7 @@ describe('ProductsFilter', () => {
   it('should display all categories as options', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const options = compiled.querySelectorAll('option');
+
     categories.forEach((category, index) => {
       expect(options[index + 1].getAttribute('value')).toBe(category);
       expect(options[index + 1].textContent?.trim()).toBe(category);

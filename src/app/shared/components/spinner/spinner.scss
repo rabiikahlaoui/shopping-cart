@@ -1,5 +1,9 @@
 @use 'variables' as *;
 
+.spinner-wrapper {
+  margin: 2rem 0;
+}
+
 .spinner {
   width: 2.5rem;
   height: 2.5rem;

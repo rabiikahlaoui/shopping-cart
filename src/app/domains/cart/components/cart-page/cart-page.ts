@@ -1,13 +1,14 @@
 import { Component, computed, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { Subheader } from '@shared/components/subheader/subheader';
+import { EmptyState } from '@shared/components/empty-state/empty-state';
 import { getPriceTtc } from '@shared/utils/tax.utils';
 import { CartStore } from '@core/store/cart.store';
 import { CartItemPricing } from '@shared/models/cart-item.model';
 
 @Component({
   selector: 'app-cart-page',
-  imports: [Subheader, CurrencyPipe],
+  imports: [Subheader, EmptyState, CurrencyPipe],
   templateUrl: './cart-page.html',
   styleUrl: './cart-page.scss',
 })

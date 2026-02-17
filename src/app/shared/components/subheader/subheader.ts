@@ -7,5 +7,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './subheader.scss',
 })
 export class Subheader {
-  title = input<string>('');
+  title = input.required<string>();
 }

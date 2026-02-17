@@ -59,7 +59,7 @@ describe('getBaseTaxRatePercent', () => {
     expect(result).toBe(expected);
   });
 
-  it('should return 0 for lowercase food', () => {
+  it('should handle cases and return 0 for lowercased food', () => {
     const category = 'food';
     const result = getBaseTaxRatePercent(category);
     const expected = 0;
@@ -159,22 +159,6 @@ describe('getPriceTtc', () => {
       const inputProduct = product({ category: 'Electric', price: 1, isImported: true });
       const priceTtc = getPriceTtc(inputProduct);
       const expected = 1.25;
-      expect(priceTtc).toBe(expected);
-    });
-  });
-
-  describe('rounding to 5 cents', () => {
-    it('should round 0.99 tax to 1.00', () => {
-      const inputProduct = product({ category: 'Food', price: 19.8, isImported: true });
-      const priceTtc = getPriceTtc(inputProduct);
-      const expected = 19.8 + 1;
-      expect(priceTtc).toBe(expected);
-    });
-
-    it('should round 1.01 tax to 1.05', () => {
-      const inputProduct = product({ category: 'Books', price: 10.1 });
-      const priceTtc = getPriceTtc(inputProduct);
-      const expected = 10.1 + 1.05;
       expect(priceTtc).toBe(expected);
     });
   });

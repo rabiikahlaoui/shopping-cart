@@ -1,7 +1,6 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import productsData from '../../../data/products.json';
 import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 const PRODUCTS_API_PATH = '/api/products';
 
@@ -14,7 +13,7 @@ export const mockApiInterceptor: HttpInterceptorFn = (req, next) => {
         status: 200,
         body: [...(productsData as unknown[])]
       })
-    ).pipe(delay(1000));
+    );
   }
 
   return next(req);

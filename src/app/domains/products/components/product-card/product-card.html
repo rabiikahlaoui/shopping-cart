@@ -26,25 +26,30 @@
 
   @if (product().quantity > 0) {
     @if (availableQuantity() > 0) {
-    <div class="add-to-cart flex align-center">
-        <label [for]="'quantity-' + product().id">Quantité</label>
-        <select [id]="'quantity-' + product().id" [value]="effectiveQuantityToAdd()" (change)="setQuantity($event)">
-        @for (quantity of quantityOptions; track quantity) {
-        <option [value]="quantity">
-            {{ quantity }}
-        </option>
-        }
-        </select>
-        <button
-          type="button"
-          class="btn btn-primary"
-          [attr.aria-label]="'Ajouter ' + (product().productName || 'cet article') + ' au panier'"
-          (click)="addToCart()"
-        >
-          <i class="bi bi-bag-plus"></i>
-          Ajouter
-        </button>
-    </div>
+      <div class="add-to-cart flex align-center">
+          <label [for]="'quantity-' + product().id">Quantité:</label>
+          <select
+            [id]="'quantity-' + product().id"
+            [value]="effectiveQuantityToAdd()"
+            aria-label="Quantité à ajouter"
+            (change)="setQuantity($event)"
+          >
+            @for (quantity of quantityOptions; track quantity) {
+              <option [value]="quantity">
+                  {{ quantity }}
+              </option>
+            }
+          </select>
+          <button
+            type="button"
+            class="btn btn-primary"
+            [attr.aria-label]="'Ajouter ' + (product().productName || 'cet article') + ' au panier'"
+            (click)="addToCart()"
+          >
+            <i class="bi bi-bag-plus"></i>
+            Ajouter
+          </button>
+      </div>
     } @else {
         <p class="product-stock-message">Tout est dans le panier</p>
     }

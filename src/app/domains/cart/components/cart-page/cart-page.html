@@ -2,63 +2,63 @@
 
 <main class="container" role="main" tabindex="-1">
   @if (cartStore.cartItems().length === 0) {
-  <p class="cart-empty">Panier vide</p>
+    <app-empty-state message="Panier vide" />
   } @else {
-  <div class="cart-container flex">
-    <table class="table responsive" role="table" aria-label="Contenu du panier">
-      <thead>
-        <tr>
-          <th scope="col" class="cart-name-col">Nom</th>
-          <th scope="col" class="cart-quantity-col">Quantité</th>
-          <th scope="col" class="cart-tax-col">Taxes</th>
-          <th scope="col" class="cart-pht-col">Prix unitaire HT</th>
-          <th scope="col" class="cart-pttc-col">Prix unitaire TTC</th>
-          <th scope="col" class="cart-actions-col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (item of cartItemsPricing(); track item.product.id) {
-        <tr>
-          <td data-label="Nom">
-            {{ item.product.productName || 'Sans nom' }}
-          </td>
-          <td data-label="Quantité">
-            {{ item.quantity }}
-          </td>
-          <td data-label="Taxes">
-            {{ item.unitTax | currency:'EUR':'symbol':'1.2-2' }}
-          </td>
-          <td data-label="Prix unitaire HT">
-            {{ item.unitPriceHt | currency:'EUR':'symbol':'1.2-2' }}
-          </td>
-          <td data-label="Prix unitaire TTC">
-            {{ item.unitPriceTtc | currency:'EUR':'symbol':'1.2-2' }}
-          </td>
-          <td class="actions" data-label="Actions">
-            <button
-              type="button"
-              class="btn btn-outline-danger btn-delete"
-              [attr.aria-label]="'Supprimer ' + (item.product.productName || 'cet article') + ' du panier'"
-              (click)="cartStore.removeItem(item.product.id)"
-            >
-              <i class="bi bi-x-lg" aria-hidden="true"></i>
-              Supprimer
-            </button>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
-    <div class="cart-totals">
-      <p class="cart-total-line">
-        Total taxes :
-        {{ cartStore.cartTotalTaxes() | currency:'EUR':'symbol':'1.2-2' }}
-      </p>
-      <p class="cart-total-line cart-total-ttc">
-        Total TTC :
-        {{ cartStore.cartTotal() | currency:'EUR':'symbol':'1.2-2' }}
-      </p>
+    <div class="cart-container flex">
+      <table class="table responsive" role="table" aria-label="Contenu du panier">
+        <thead>
+          <tr>
+            <th scope="col" class="cart-name-col">Nom</th>
+            <th scope="col" class="cart-quantity-col">Quantité</th>
+            <th scope="col" class="cart-tax-col">Taxes</th>
+            <th scope="col" class="cart-pht-col">Prix unitaire HT</th>
+            <th scope="col" class="cart-pttc-col">Prix unitaire TTC</th>
+            <th scope="col" class="cart-actions-col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of cartItemsPricing(); track item.product.id) {
+          <tr>
+            <td data-label="Nom">
+              {{ item.product.productName || 'Sans nom' }}
+            </td>
+            <td data-label="Quantité">
+              {{ item.quantity }}
+            </td>
+            <td data-label="Taxes">
+              {{ item.unitTax | currency:'EUR':'symbol':'1.2-2' }}
+            </td>
+            <td data-label="Prix unitaire HT">
+              {{ item.unitPriceHt | currency:'EUR':'symbol':'1.2-2' }}
+            </td>
+            <td data-label="Prix unitaire TTC">
+              {{ item.unitPriceTtc | currency:'EUR':'symbol':'1.2-2' }}
+            </td>
+            <td class="actions" data-label="Actions">
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-delete"
+                [attr.aria-label]="'Supprimer ' + (item.product.productName || 'cet article') + ' du panier'"
+                (click)="cartStore.removeItem(item.product.id)"
+              >
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+                Supprimer
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      <div class="cart-totals">
+        <p class="cart-total-line">
+          Total taxes :
+          {{ cartStore.cartTotalTaxes() | currency:'EUR':'symbol':'1.2-2' }}
+        </p>
+        <p class="cart-total-line cart-total-ttc">
+          Total TTC :
+          {{ cartStore.cartTotal() | currency:'EUR':'symbol':'1.2-2' }}
+        </p>
+      </div>
     </div>
-  </div>
   }
 </main>

@@ -24,10 +24,11 @@ const DEFAULT_CATEGORY_ICON = 'bi bi-cart';
 })
 export class ProductCard {
   product = input.required<Product>();
-  quantityToAdd = signal(1);
   private cartStore = inject(CartStore);
 
-  readonly categoryIconClass = computed(() => {
+  quantityToAdd = signal(1);
+
+  categoryIconClass = computed(() => {
     const category = this.product()?.category;
     return (category && CATEGORY_ICONS[category]) || DEFAULT_CATEGORY_ICON;
   });
@@ -35,13 +36,12 @@ export class ProductCard {
   priceTtc = computed(() => getPriceTtc(this.product()));
 
   availableQuantity = computed(() => {
-    const product = this.product();
-    if (!product) return 0;
-    return Math.max(0, product.quantity - this.cartStore.getQuantityInCart(product.id));
+    const quantityInCart = this.cartStore.getQuantityInCart(this.product().id);
+    return this.product().quantity - quantityInCart;
   });
 
   effectiveQuantityToAdd = computed(() =>
-    Math.min(this.quantityToAdd(), Math.max(1, this.availableQuantity()))
+    Math.min(this.quantityToAdd(), this.availableQuantity())
   );
 
   get quantityOptions(): number[] {
@@ -57,8 +57,7 @@ export class ProductCard {
   addToCart(): void {
     const product = this.product();
     const toAdd = this.effectiveQuantityToAdd();
-    const max = this.availableQuantity();
-    if (!product || toAdd <= 0 || max <= 0) return;
-    this.cartStore.addItem(product, Math.min(toAdd, max));
+
+    this.cartStore.addItem(product, toAdd);
   }
 }
