@@ -14,7 +14,7 @@
     </p>
 
     <p class="product-price ml-auto">
-      {{ product() | priceTtc | currency:'EUR':'symbol':'1.2-2' }}
+      {{ priceTtc() | currency:'EUR':'symbol':'1.2-2' }}
     </p>
   </div>
 
@@ -35,7 +35,8 @@
           [attr.aria-label]="'Ajouter ' + (product().productName || 'cet article') + ' au panier'"
           (click)="addToCart()"
         >
-          Ajouter au panier
+          <i class="bi bi-bag-plus"></i>
+          Ajouter
         </button>
     </div>
     } @else {

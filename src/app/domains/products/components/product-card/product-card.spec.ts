@@ -40,7 +40,7 @@ describe('ProductCard', () => {
   it('should display add-to-cart section when quantity > 0', () => {
     const el = fixture.nativeElement as HTMLElement;
     expect(el.textContent).toContain('Quantité');
-    expect(el.textContent).toContain('Ajouter au panier');
+    expect(el.textContent).toContain('Ajouter');
   });
 
   it('should display Non disponible when quantity is 0', () => {

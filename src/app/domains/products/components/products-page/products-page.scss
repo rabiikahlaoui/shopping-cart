@@ -11,8 +11,16 @@
   gap: 1rem;
 }
 
+// Tablet
 @media (max-width: 1024px) {
-    .products-list {
-        grid-template-columns: repeat(1, 1fr);
-    }
+  .products-list {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Mobile
+@media (max-width: 520px) {
+  .products-list {
+      grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -10,6 +10,17 @@
     margin: 2rem 0 1rem 0;
     gap: 3rem;
 
+    .cart-quantity-col,
+    .cart-tax-col {
+        width: 7rem;
+    }
+
+    .cart-pht-col,
+    .cart-pttc-col,
+    .cart-actions-col {
+        width: 10rem;
+    }
+
     .cart-totals {
         flex: 0 0 15rem;
         padding: 1rem;
@@ -28,6 +39,7 @@
     }
 }
 
+// Tablet and mobile
 @media (max-width: 1024px) {
     .cart-container {
         flex-direction: column;

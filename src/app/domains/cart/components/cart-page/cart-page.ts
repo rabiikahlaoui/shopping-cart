@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { Subheader } from '@shared/components/subheader/subheader';
 import { getPriceTtc } from '@shared/utils/tax.utils';
-import { CartStore } from '../../store/cart.store';
+import { CartStore } from '@core/store/cart.store';
 import { CartItemWithTotals } from '../../model/cart-item.model';
 
 @Component({

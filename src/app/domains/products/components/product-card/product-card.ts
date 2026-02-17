@@ -1,15 +1,14 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { Product } from '../../model/product.model';
-import { PriceTtcPipe } from '../../pipes/price-ttc.pipe';
-import { CartStore } from '../../../cart/store/cart.store';
+import { getPriceTtc } from '@shared/utils/tax.utils';
+import { CartStore } from '@core/store/cart.store';
 
 @Component({
   selector: 'app-product-card',
   imports: [
     CurrencyPipe,
     TitleCasePipe,
-    PriceTtcPipe,
   ],
   templateUrl: './product-card.html',
   styleUrl: './product-card.scss',
@@ -18,6 +17,8 @@ export class ProductCard {
   product = input.required<Product>();
   quantityToAdd = signal(1);
   private cartStore = inject(CartStore);
+
+  priceTtc = computed(() => getPriceTtc(this.product()));
 
   availableQuantity = computed(() => {
     const product = this.product();

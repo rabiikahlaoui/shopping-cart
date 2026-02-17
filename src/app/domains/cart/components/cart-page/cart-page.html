@@ -8,12 +8,12 @@
     <table class="table responsive" role="table" aria-label="Contenu du panier">
       <thead>
         <tr>
-          <th scope="col">Nom</th>
-          <th scope="col">Quantité</th>
-          <th scope="col">Taxes (unitaire)</th>
-          <th scope="col">Prix unitaire HT</th>
-          <th scope="col">Prix unitaire TTC</th>
-          <th scope="col">Actions</th>
+          <th scope="col" class="cart-name-col">Nom</th>
+          <th scope="col" class="cart-quantity-col">Quantité</th>
+          <th scope="col" class="cart-tax-col">Taxes</th>
+          <th scope="col" class="cart-pht-col">Prix unitaire HT</th>
+          <th scope="col" class="cart-pttc-col">Prix unitaire TTC</th>
+          <th scope="col" class="cart-actions-col"></th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +25,7 @@
           <td data-label="Quantité">
             {{ item.quantity }}
           </td>
-          <td data-label="Taxes (unitaire)">
+          <td data-label="Taxes">
             {{ item.unitTax | currency:'EUR':'symbol':'1.2-2' }}
           </td>
           <td data-label="Prix unitaire HT">
